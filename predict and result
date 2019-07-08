@@ -1,0 +1,26 @@
+#进行预测
+def predict(X,params):
+    w = params['w']
+    b = params['b']
+    y_pred=np.dot(X, w) + b
+    return y_pred
+y_pred = predict(X_test, params)
+y_pred
+
+#结果展示
+import matplotlib.pyplot as plt
+f=X_test.dot(params['w'])+params['b']
+plt.scatter(range(X_test.shape[0]), y_test)
+plt.plot(f, color = "darkorange")
+plt.xlabels=("X")
+plt.ylabels=("y")
+plt.show()
+%matplotlib inline
+
+#训练过程中的下降
+plt.plot(loss_list,color = "blue")
+plt.xlabels=("epochs")
+plt.ylabels=("loss")
+plt.show()
+plt.xlabels=("X")
+%matplotlib inline
