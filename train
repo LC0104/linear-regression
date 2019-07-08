@@ -1,0 +1,22 @@
+#数据准备
+from sklearn.datasets import load_diabetes
+from sklearn.utils import shuffle
+diabetes = load_diabetes()
+data = diabetes.data
+target = diabetes.target
+
+X,y = shuffle(data, target, random_state=13)  #打乱数据
+X = X.astype(np.float32)
+
+offset = int(X.shape[0]*0.9)
+X_train, y_train = X[:offset],y[:offset]
+X_test, y_test = X[offset:],y[offset:]
+y_train = y_train.reshape((-1,1))
+y_test = y_test.reshape((-1,1))  
+
+
+
+#训练
+loss_list,loss,params,grads=linear_train(X_train, y_train, 0.001, 100000)
+#查看回归参数
+print(params)
